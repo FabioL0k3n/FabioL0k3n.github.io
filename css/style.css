@@ -251,7 +251,7 @@ header{
         grid-template-columns: min-content max-content;
     }
     .intro_img{
-        grid-area: "img";
+        grid-area: img;
         min-width: 250px;
         position: relative;
         z-index: 2;
