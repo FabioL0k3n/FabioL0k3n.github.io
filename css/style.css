@@ -201,7 +201,7 @@ header{
 
 
 /*Responsive toggle menmu on mobile*/
-@media (max-width:635px){
+@media (max-width:680px){
     header{
         flex-direction:column;
         margin-bottom: 2em;
@@ -224,10 +224,6 @@ header{
         transform: translateX(0%);
     }
 }
-
-
-
-
 
 /*INTRO SECTION*/
 .intro{
@@ -372,10 +368,15 @@ header{
     padding: 2.5em 0;
     font-size: var(--fs-h3);
 }
-@media(max-width:300px){
-    .footer-link,
-    .social-list_link{
+@media(max-width:350px){
+    .footer-link{
         font-size:var(--fs-body);
+    }
+}
+@media (max-width:400px){    
+    .social-list{
+        flex-direction: column;
+        font-size:var(--fs-h3);
     }
 }
 .footer-link{
