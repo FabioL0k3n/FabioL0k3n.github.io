@@ -43,6 +43,7 @@ body{
     font-family: var(--font_f-primary);
     font-size: var(--fs-body);
     line-height: 1.6;
+    width: 100%;
 }
 section{
     padding: 5em 2em;
@@ -71,6 +72,8 @@ strong{font-weight: var(--font_w-bold);}
     font-weight: var(--font_w-bold);
     /*Quando ci passo sopra(:hover) si ingrandirà*/
     transition: transform 200ms ease-in-out;
+    margin-top:1.25em;
+    margin-bottom:0;
 }
 .btn:hover{
     transform: scale(1.1);
@@ -154,7 +157,7 @@ header{
     height: 100%;
     /*DISPLAY MENU IN ORIZZONTALE
     PER DISPORRE CON HAMBURGER CAMBIARE IN COLUMN*/
-    flex-direction:raw;
+    flex-direction:row;
     justify-content: space-evenly;
     align-items: center;
     margin: 0;
@@ -198,11 +201,19 @@ header{
 
 
 /*Responsive toggle menmu on mobile*/
-@media only screen and (max-width:600px){
+@media (max-width:635px){
+    header{
+        flex-direction:column;
+        margin-bottom: 2em;
+        padding:0;
+    }
     .nav{
-        height: 100%;
+        position:static;
+        max-width: 100%;
+        top: 0;
+        height:35%;
         /*Modificare il valore per avere il menu ad hamburger*/
-        transform: translateX(100%);
+        flex-direction:column;
     }
     .nav__list{
         /*DISPLAY MENU IN ORIZZONTALE
@@ -228,7 +239,7 @@ header{
 .section__subtitle-intro{
     display: inline-block;
 }
-@media (min-width: 600px){
+@media (min-width: 635px){
     .intro{
         display: grid;
         width: min-content;
@@ -240,7 +251,7 @@ header{
         grid-template-columns: min-content max-content;
     }
     .intro_img{
-        grid-area: img;
+        grid-area: "img";
         min-width: 250px;
         position: relative;
         z-index: 2;
@@ -269,7 +280,6 @@ header{
     */
     color: var(--clr-light);
     text-align: center;
-
     margin: 0;
 }
 .sction__title-services{
@@ -287,7 +297,7 @@ header{
 }
 .service{
     max-width: 500px;
-    margin:0 auto;
+    margin:0 20px;
 }
 .services{
     margin-bottom: 4em;
@@ -332,7 +342,7 @@ header{
         /*EVITARE CHE LA SCRITTA VADA SOTTO L'IMMAGINE*/
         position: relative;
         left: -2em;
-        width: calc(100% + 4em);
+        max-width: calc(100%);
         padding-left: 1em;
         padding-right: calc(200px + 4em);
     }
@@ -361,6 +371,12 @@ header{
     text-align:center;
     padding: 2.5em 0;
     font-size: var(--fs-h3);
+}
+@media(max-width:300px){
+    .footer-link,
+    .social-list_link{
+        font-size:var(--fs-body);
+    }
 }
 .footer-link{
     font-weight: var(--font_w-bold);
