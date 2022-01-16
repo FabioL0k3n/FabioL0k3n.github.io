@@ -1,0 +1,392 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+:root{
+    /*FONT FAMILY*/
+    --font_f-primary: 'Source Sans Pro', sans-serif;
+    --font_f-secondary: 'Source Sans Pro',monospace;
+    /*FONT WEIGHT*/
+    --font_w-reg:400;
+    --font_w-bold:900;
+    /*COLOR*/
+    --clr-light:#fff;
+    --clr-dark:#303030;
+    --clr-accent:#16e0bd;
+    /*FONT SIZE*/
+    --fs-h1: 3rem;
+    --fs-h2:2.5rem;
+    --fs-h3:1.5rem;
+    --fs-body:1rem; 
+
+    /*Opzione per l'ombra dei box, la sviluppiamo su più livelli*/
+
+    --bs:0.25em 0.25em 0.75em rgba(0,0,0,.25),
+         0.125em 0.125em 0.25em rgba(0,0,0,.15);
+
+}
+
+@media (min-width: 800px){
+    :root{
+        --fs-h1:4.5rem;
+        --fs-h2:3.7rem;
+        --fs-h3:1.25rem;
+        --fs-body:.9rem;
+    }
+}
+
+/*GENERAL STYLE*/
+body{
+    background: var(--clr-light);
+    color: var(--clr-dark);
+    margin: 0;
+    font-family: var(--font_f-primary);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+}
+section{
+    padding: 5em 2em;
+}
+img{
+    display: block;
+    max-width: 100%; /*Per evitare che l'immagine si sovrapponga ad altri blocchi*/
+}
+strong{font-weight: var(--font_w-bold);}
+
+:focus{
+    outline: 3px solid var(--clr-accent);
+    outline-offset: 3px;
+}
+/*BUTTON*/
+.btn{
+    display: inline-block;
+    padding: .5em 2.5em;
+    background-color: var(--clr-accent);
+    color: var(--clr-dark);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: var(--font_w-bold);
+    /*Quando ci passo sopra(:hover) si ingrandirà*/
+    transition: transform 200ms ease-in-out;
+}
+.btn:hover{
+    transform: scale(1.1);
+}
+/*TYPOGRAPHY*/
+
+
+h1,h2,h3{
+    line-height: 1.1;
+    margin: 0;
+}
+
+h1{font-size: var(--fs-h1);}
+h2{font-size: var(--fs-h2);}
+h3{font-size: var(--fs-h3);font-weight: var(--font_w-bold);}
+
+.section_title{
+    margin-bottom: .25em;
+}
+.section_title-intro{
+    font-weight: var(--font_w-reg);
+}
+.section_title-intro strong{
+    display: block;
+}
+.section__subtitle{
+    margin: 0;
+    font-size: var(--fs-h3);
+}
+.section__subtitle-intro,
+.section__subtitle-about{
+    background: var(--clr-accent);
+    font-family: var(--font_f-secondary);
+    margin-bottom: 1em;
+    padding: .25em 1em;
+}
+.section__subtitle-work{
+    color: var(--clr-accent);
+    font-weight: var(--font_w-bold);
+    margin-bottom:1em;
+}
+
+/*HEADER*/
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+.logo{
+    max-width: 100px;
+    display: none;
+}
+.nav{
+    position: fixed;
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    /*Per avere il menu orizzontale in alto*/
+    height: 4em;
+
+    /*Modificare il valore per avere il menu ad hamburger
+    transform: translateX(100%);*/
+    transition: transform 10ms cubic-bezier(.5,0,.5,1);
+}
+.nav-toggle{
+    padding: .25em;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+.nav__list{
+    list-style: none;
+    display: flex;
+    height: 100%;
+    /*DISPLAY MENU IN ORIZZONTALE
+    PER DISPORRE CON HAMBURGER CAMBIARE IN COLUMN*/
+    flex-direction:raw;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.link__nav{
+    color: inherit;
+    font-weight: var(--font_w-bold);
+    font-size: var(--fs-h3);
+    text-decoration: none;
+}
+
+.link__nav:hover{
+    color: var(--clr-accent);
+}
+.hamburger{
+    display: block;
+    position: relative;
+}
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+    background: var(--clr-dark);
+    width: 2em;
+    height: 3px;
+    border-radius: 1em;
+    transition: transform 250ms ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.hamburger::before{top:6px;}
+.hamburger::after{bottom: 6px;}
+
+
+
+/*Responsive toggle menmu on mobile*/
+@media only screen and (max-width:600px){
+    .nav{
+        height: 100%;
+        /*Modificare il valore per avere il menu ad hamburger*/
+        transform: translateX(100%);
+    }
+    .nav__list{
+        /*DISPLAY MENU IN ORIZZONTALE
+        PER DISPORRE CON HAMBURGER CAMBIARE IN COLUMN*/
+        flex-direction:column;
+    }
+    .na:checked .nav{
+        transform: translateX(0%);
+    }
+}
+
+
+
+
+
+/*INTRO SECTION*/
+.intro{
+    position: relative;
+}
+.intro_img{
+    box-shadow: var(--bs);
+}
+.section__subtitle-intro{
+    display: inline-block;
+}
+@media (min-width: 600px){
+    .intro{
+        display: grid;
+        width: min-content;
+        margin: 0 auto;
+        grid-column-gap: 1em;
+        grid-template-areas: 
+            "img title"
+            "img subtitle";
+        grid-template-columns: min-content max-content;
+    }
+    .intro_img{
+        grid-area: img;
+        min-width: 250px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .section__subtitle-intro{
+        align-self: start;
+        grid-column: -1/1;
+        grid-row: 2;
+        text-align: right;
+        /*Per ottenere l'effetto di continuità sul retro della
+        sezione azzurra conviene usare questa opzione qui */
+        position: relative;
+        left: -1.5em;
+        /*Per allineare la linea con il box, usiamo questa opzione*/
+        width: calc(100% + 1.5em);
+    }
+}
+
+/*MY SERVICE SECTION*/
+.my-services{
+    background-color: var(--clr-dark);
+    /*possibile immagine di background
+    background-image:url(../image/service_logo.jpg);
+    background-size: cover;
+    */
+    color: var(--clr-light);
+    text-align: center;
+
+    margin: 0;
+}
+.sction__title-services{
+    color: var(--clr-accent);
+    position: relative;
+}
+.sction__title-services::after{
+    content: '';
+    display: block;
+    width: 25%;
+    height: 1px;
+    margin: .5em auto 1em;
+    background: currentColor;
+    opacity:0.25;
+}
+.service{
+    max-width: 500px;
+    margin:0 auto;
+}
+.services{
+    margin-bottom: 4em;
+}
+@media (min-width: 800px){
+    .services{
+        display: flex; /*da gestire il tutto in colonne*/
+        max-width: 1000px;
+        margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .service + .service{
+        margin-left: 3em;
+    }
+}
+/*ABOUT ME*/
+.about-me{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.about-me-img{
+    box-shadow: var(--bs);
+}
+@media (min-width:600px){
+    .about-me{
+        display: grid;
+        grid-template-columns: 1fr 200px;
+        grid-template-areas: 
+        "title img"
+        "subtitle img"
+        "text img";    
+        grid-column-gap: 2em;    
+    }
+    .section_title-about{
+        grid-area:title;
+    }
+    .section__subtitle-about{
+        grid-column: 1/-1;
+        grid-row: 2;
+        /*EVITARE CHE LA SCRITTA VADA SOTTO L'IMMAGINE*/
+        position: relative;
+        left: -2em;
+        width: calc(100% + 4em);
+        padding-left: 1em;
+        padding-right: calc(200px + 4em);
+    }
+    .about-me-img{
+        grid-area: img;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+/*MY WORKS*/
+.my-work{
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+    text-align: center;
+}
+.portfolio{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+}
+
+/*FOOTER*/
+.footer{
+    background: #111;
+    color:var(--clr-accent);
+    text-align:center;
+    padding: 2.5em 0;
+    font-size: var(--fs-h3);
+}
+.footer-link{
+    font-weight: var(--font_w-bold);
+}
+.footer a{
+    color: var(--clr-accent);
+    text-decoration: none;
+}
+.footer-link:hover,
+.social-list_item{
+    opacity: .7;
+
+} 
+.footer-link:hover{
+    text-decoration: underline;
+}
+.social-list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 1.5em 0 0;
+    padding: 0;
+}
+.social-list_item{
+    margin: 0 .5em;
+}
+.social-list_link{
+    padding: .2em;
+}
