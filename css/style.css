@@ -142,15 +142,7 @@ header{
     transform: translateX(100%);*/
     transition: transform 10ms cubic-bezier(.5,0,.5,1);
 }
-.nav-toggle{
-    padding: .25em;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    position: absolute;
-    right: 1em;
-    top: 1em;
-}
+
 .nav__list{
     list-style: none;
     display: flex;
@@ -174,55 +166,93 @@ header{
 .link__nav:hover{
     color: var(--clr-accent);
 }
-.hamburger{
-    display: block;
-    position: relative;
+.nav_toggle{
+    display:none;
 }
-.hamburger,
-.hamburger::before,
-.hamburger::after{
-    background: var(--clr-dark);
-    width: 2em;
-    height: 3px;
-    border-radius: 1em;
-    transition: transform 250ms ease-in-out;
-}
-
-.hamburger::before,
-.hamburger::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-}
-.hamburger::before{top:6px;}
-.hamburger::after{bottom: 6px;}
-
-
-
 /*Responsive toggle menmu on mobile*/
-@media (max-width:680px){
+@media (max-width:700px){
+    .nav_toggle{
+        display: none;
+    }
+    .nav_toggle,
+    span{
+        z-index: 120;
+        float: right;
+    }
+    /* styling the span to show the hamburger icon*/
+    .nav_toggle-label span,
+    .nav_toggle-label span::after,
+    .nav_toggle-label span::before{
+        display:block;
+        background-color:#fff;
+        height:5px;
+        width:2em;
+        border-radius:2px;
+        position: relative;
+    }
+    .nav_toggle-label span::before,
+    .nav_toggle-label span::after {
+        content: '';
+        position: absolute;
+    }
+    .nav_toggle-label span::before{
+        top:7px;
+    }
+    .nav_toggle-label span::after{
+        bottom: 7px;
+    }
+    .nav_toggle-label{
+        position: absolute;
+        right: 0;
+        margin-right: 2em;
+        display: flex;
+        align-items: center;
+    }
+    /* Styling header */
     header{
+        background: var(--clr-dark);
+        text-align: center;
+        position:fixed;
+        height:1em;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 105;
+    }
+
+    .nav__list{
         flex-direction:column;
-        margin-bottom: 2em;
-        padding:0;
     }
     .nav{
-        position:static;
-        max-width: 100%;
-        top: 0;
-        height:35%;
-        /*Modificare il valore per avere il menu ad hamburger*/
-        flex-direction:column;
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height:40vh;
+        /* width:40vw; */
+
+        /* animazione del menu */
+        transform:scale(1,0);
+        transform-origin:top;
+        transition:transform 400ms ease-in-out;
     }
-    .nav__list{
-        /*DISPLAY MENU IN ORIZZONTALE
-        PER DISPORRE CON HAMBURGER CAMBIARE IN COLUMN*/
-        flex-direction:column;
+    .nav a{
+        opacity: 0;
+        /* Animazione sui link con opacità */
+        transition: opacity 200ms ease-in-out; 
     }
-    .na:checked .nav{
-        transform: translateX(0%);
+    /* Quando clicco il tasto esce il menu */
+    .nav_toggle:checked ~ .nav{
+        display:block;
+        transform:scale(1,1);
     }
+    .nav_toggle:checked ~ .nav a{
+        opacity: 1;
+        transition: opacity 250ms ease-in-out 250ms;
+    }
+    
+
 }
 
 /*INTRO SECTION*/
@@ -296,7 +326,7 @@ header{
     margin:0 20px;
 }
 .services{
-    margin-bottom: 4em;
+    margin: 4em;
 }
 @media (min-width: 800px){
     .services{
